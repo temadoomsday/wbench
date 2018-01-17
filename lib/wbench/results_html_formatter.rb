@@ -12,7 +12,7 @@ module WBench
 
     def html_table
       <<-TABLE
-        #{style_s if WBench.color_output}
+        #{style_s if WBench.style_output}
         <header>
           <h3>Testing <span>#{@results.url}</span></h3>
           <ul>

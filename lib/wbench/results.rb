@@ -25,12 +25,14 @@ module WBench
       @app_server << app_server
     end
 
-    def to_s(format = nil)
-      case format
+    def to_s
+      case WBench.format_output
       when :html
         ResultsHtmlFormatter.new(self).to_s
-      else
+      when :text
         ResultsTextFormatter.new(self).to_s
+      else
+        raise NotImplementedError, 'Not found format output'
       end
     end
   end

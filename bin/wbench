@@ -10,33 +10,49 @@ options = {}.tap do |options|
     opts.version = WBench::VERSION
     opts.banner  = 'Usage: wbench url [options]'
 
-    opts.separator ""
-    opts.separator "Options:"
+    opts.separator ''
+    opts.separator 'Options:'
 
-    opts.on("-l", "--loops [LOOPS]", Integer, "Set number of loops (default: #{WBench::DEFAULT_LOOPS})") do |loops|
+    opts.on('-l', '--loops [LOOPS]', Integer, "Set number of loops (default: #{WBench::DEFAULT_LOOPS})") do |loops|
       options[:loops] = loops
     end
 
-    opts.on("-b", "--browser [BROWSER]", "Set the web browser, chrome and firefox are available (default: #{WBench::DEFAULT_BROWSER})") do |browser|
+    opts.on('-b', '--browser [BROWSER]', "Set the web browser, chrome and firefox are available (default: #{WBench::DEFAULT_BROWSER})") do |browser|
       options[:browser] = browser
     end
 
-    opts.on("-u", "--user-agent [USER AGENT]", "Set the user-agent (default: browsers' default user-agent value)") do |user_agent|
+    opts.on('-u', '--user-agent [USER AGENT]', 'Set the user-agent (default: browsers` default user-agent value)') do |user_agent|
       options[:user_agent] = user_agent
     end
 
-    opts.on("-nc", "--no-color", "Disable color output") do
+    opts.on('-nc', '--no-color', 'Disable color output') do
       options[:color_output] = false
     end
 
-    opts.on("-c", "--cookie [COOKIE]", "Set the cookie (default: browsers' default cookie value)") do |cookie|
+    opts.on('-ns', '--no-style', 'Disable html style in output') do
+      options[:style_output] = false
+    end
+
+    opts.on('-c', '--cookie [COOKIE]', 'Set the cookie (default: browsers` default cookie value)') do |cookie|
       options[:cookie] = cookie
+    end
+
+    opts.on('-f', '--format [text|html]', 'Set format in output (default: text)') do |format|
+      options[:format_output] = format
     end
   end.parse!
 end
 
 if options.has_key?(:color_output)
   WBench.color_output = options.delete(:color_output)
+end
+
+if options.has_key?(:style_output)
+  WBench.style_output = options.delete(:style_output)
+end
+
+if options.has_key?(:format_output)
+  WBench.format_output = options.delete(:format_output)
 end
 
 if url = ARGV[0]

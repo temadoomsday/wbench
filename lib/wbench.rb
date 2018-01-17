@@ -34,9 +34,13 @@ module WBench
     attr_accessor :capybara_driver
     attr_accessor :capybara_timeout
     attr_accessor :color_output
+    attr_accessor :style_output
+    attr_accessor :format_output
   end
 
   self.capybara_driver = :wbench
   self.capybara_timeout = 60
   self.color_output = true
+  self.style_output = true
+  self.format_output = :text
 end
