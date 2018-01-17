@@ -26,7 +26,11 @@ module WBench
     end
 
     def to_s
-      case WBench.format_output
+      to_formatted_s(WBench.format_output)
+    end
+
+    def to_formatted_s(format = :text)
+      case format
       when :html
         ResultsHtmlFormatter.new(self).to_s
       when :text
