@@ -16,8 +16,8 @@ module WBench
         <header>
           <h3>Testing <span>#{@results.url}</span></h3>
           <ul>
-              <li>At #{@results.time}</li>
-              <li>#{@results.loops} loops</li>
+            <li>At #{@results.time}</li>
+            <li>#{@results.loops} loops</li>
           </ul>
         </header>
         <table>
