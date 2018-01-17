@@ -29,7 +29,7 @@ options = {}.tap do |options|
       options[:color_output] = false
     end
 
-    opts.on('-ns', '--no-style', 'Disable html style in output') do
+    opts.on('-ns', '--no-style', 'Disable style output') do
       options[:style_output] = false
     end
 
