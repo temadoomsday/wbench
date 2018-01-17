@@ -26,37 +26,33 @@ module WBench
             <th>Std Dev</th>
           </thead>
           <tbody>
-            <tr>
-              <td class="heading" colspan='5'>Server performance:<td>
-            </tr>
-            #{spacer_s}
-            <tr>
-              #{app_server_s}
-            </tr>
-            <tr>
-              <td class="heading" colspan='5'>Host latency:<td>
-            </tr>
-            <tr>
-              #{latency_s}
-            </tr>
-            #{spacer_s}
-            <tr>
-              <td class="heading" colspan='5'>Browser performance:<td>
-            </tr>
-            <tr>
-              #{browser_rows_s}
-            </tr>
+            <tr>#{app_heading_s}</tr>
+            <tr>#{app_server_s}</tr>
+            <tr>#{spacer_s}</tr>
+            <tr>#{latency_heading_s}</tr>
+            <tr>#{latency_s}</tr>
+            <tr>#{spacer_s}</tr>
+            <tr>#{browser_heading_s}</tr>
+            <tr>#{browser_rows_s}</tr>
           </tbody>
         </table>
       TABLE
     end
 
     def spacer_s
-      '<tr><td colspan="6"><td></tr>'
+      '<td colspan="6"></td>'
+    end
+
+    def app_heading_s
+      '<td class="heading" colspan="5">Server performance:</td>'
     end
 
     def app_server_s
       RowHtmlFormatter.new('Total application time', @results.app_server)
+    end
+
+    def latency_heading_s
+      '<td class="heading" colspan="5">Host latency:</td>'
     end
 
     def latency_s
@@ -64,6 +60,10 @@ module WBench
                 RowHtmlFormatter.new(domain, values)
               end
       items.join('</tr><tr>')
+    end
+
+    def browser_heading_s
+      '<td class="heading" colspan="5">Browser performance:</td>'
     end
 
     def browser_rows_s
