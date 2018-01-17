@@ -25,12 +25,13 @@ module WBench
       @app_server << app_server
     end
 
-    def to_s
-      ResultsTextFormatter.new(self).to_s
-    end
-
-    def to_html
-      ResultsHtmlFormatter.new(self).to_s
+    def to_s(format = nil)
+      case format
+      when :html
+        ResultsHtmlFormatter.new(self).to_s
+      else
+        ResultsTextFormatter.new(self).to_s
+      end
     end
   end
 end

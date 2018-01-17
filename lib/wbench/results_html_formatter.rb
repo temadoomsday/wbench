@@ -12,8 +12,11 @@ module WBench
 
     def html_table
       <<-TABLE
-        <h3>Testing #{@results.url}</h2>
-        <p>At #{@results.time} #{@results.loops} loops</p>
+        <ul>
+          <li><h3>Testing <small>#{@results.url}</small></h3></li>
+          <li>At #{@results.time} </li>
+          <li>#{@results.loops} loops</li>
+        </ul>
         <table>
           <thead>
             <th></th>
@@ -24,19 +27,21 @@ module WBench
           </thead>
           <tbody>
             <tr>
-              <td colspan='5'>Server performance:<td>
+              <td class="heading" colspan='5'>Server performance:<td>
             </tr>
+            #{spacer_s}
             <tr>
               #{app_server_s}
             </tr>
             <tr>
-              <td colspan='5'>Host latency:<td>
+              <td class="heading" colspan='5'>Host latency:<td>
             </tr>
             <tr>
               #{latency_s}
             </tr>
+            #{spacer_s}
             <tr>
-              <td colspan='5'>Browser performance:<td>
+              <td class="heading" colspan='5'>Browser performance:<td>
             </tr>
             <tr>
               #{browser_rows_s}
@@ -44,6 +49,10 @@ module WBench
           </tbody>
         </table>
       TABLE
+    end
+
+    def spacer_s
+      '<tr><td colspan="6"><td></tr>'
     end
 
     def app_server_s
