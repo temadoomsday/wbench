@@ -26,7 +26,11 @@ module WBench
     end
 
     def to_s
-      ResultsFormatter.new(self).to_s
+      ResultsTextFormatter.new(self).to_s
+    end
+
+    def to_html
+      ResultsHtmlFormatter.new(self).to_s
     end
   end
 end

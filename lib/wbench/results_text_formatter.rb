@@ -1,5 +1,5 @@
 module WBench
-  class ResultsFormatter
+  class ResultsTextFormatter
     def initialize(results)
       @results = results
     end
@@ -37,15 +37,15 @@ module WBench
     end
 
     def browser_rows_s
-      @results.browser.map { |browser, results| RowFormatter.new(Titleizer.new(browser).to_s, results) }.join("\n")
+      @results.browser.map { |browser, results| RowTextFormatter.new(Titleizer.new(browser).to_s, results) }.join("\n")
     end
 
     def app_server_s
-      RowFormatter.new('Total application time', @results.app_server)
+      RowTextFormatter.new('Total application time', @results.app_server)
     end
 
     def latency_s
-      @results.latency.map { |domain, values| RowFormatter.new(domain, values) }.join("\n")
+      @results.latency.map { |domain, values| RowTextFormatter.new(domain, values) }.join("\n")
     end
 
     def latency_heading_s
