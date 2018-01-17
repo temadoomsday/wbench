@@ -31,9 +31,9 @@ module WBench
 
     def to_formatted_s(format = :text)
       case format
-      when :html
+      when :html, 'html'
         ResultsHtmlFormatter.new(self).to_s
-      when :text
+      when :text, 'text'
         ResultsTextFormatter.new(self).to_s
       else
         raise NotImplementedError, 'Not found format output'
