@@ -3,24 +3,7 @@ module WBench
     attr_accessor :url
 
     def initialize(url, options = {})
-      Capybara.register_driver(CAPYBARA_DRIVER) do |app|
-        http_client         = Selenium::WebDriver::Remote::Http::Default.new
-        http_client.timeout = CAPYBARA_TIMEOUT
-        browser             = (options[:browser] || DEFAULT_BROWSER).to_sym
-        selenium_options    = { :browser => browser, :http_client => http_client }
-
-        if options[:user_agent]
-          if browser == :firefox
-            profile = Selenium::WebDriver::Firefox::Profile.new
-            profile['general.useragent.override'] = options[:user_agent]
-            selenium_options[:profile] = profile
-          else
-            add_selenium_args(selenium_options, "--user-agent='#{options[:user_agent]}'")
-          end
-        end
-
-        SeleniumDriver.new(app, selenium_options)
-      end
+      register_driver(options) unless options[:driver]
 
       @url           = Addressable::URI.parse(url).normalize.to_s
       @cookie_string = options[:cookie]
@@ -51,7 +34,7 @@ module WBench
     end
 
     def session
-      @session ||= Capybara::Session.new(CAPYBARA_DRIVER)
+      @session ||= Capybara::Session.new(capybara_driver)
     end
 
     def close
@@ -68,13 +51,34 @@ module WBench
     end
 
     def wait_for_page
-      Selenium::WebDriver::Wait.new(:timeout => CAPYBARA_TIMEOUT).until do
+      Selenium::WebDriver::Wait.new(:timeout => capybara_timeout).until do
         session.evaluate_script('window.performance.timing.loadEventEnd').to_i > 0
       end
     end
 
     def set_cookies
       WBench::Cookies.set(session, url, @cookie_string)
+    end
+
+    def register_driver(options)
+      Capybara.register_driver(capybara_driver) do |app|
+        http_client         = Selenium::WebDriver::Remote::Http::Default.new
+        http_client.timeout = capybara_timeout
+        browser             = (options[:browser] || DEFAULT_BROWSER).to_sym
+        selenium_options    = { :browser => browser, :http_client => http_client }
+
+        if options[:user_agent]
+          if browser == :firefox
+            profile = Selenium::WebDriver::Firefox::Profile.new
+            profile['general.useragent.override'] = options[:user_agent]
+            selenium_options[:profile] = profile
+          else
+            add_selenium_args(selenium_options, "--user-agent='#{options[:user_agent]}'")
+          end
+        end
+
+        SeleniumDriver.new(app, selenium_options)
+      end
     end
   end
 end

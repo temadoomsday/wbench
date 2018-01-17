@@ -25,14 +25,16 @@ require 'wbench/titleizer'
 require 'wbench/version'
 
 module WBench
-  CAPYBARA_DRIVER  = :wbench_browser
-  CAPYBARA_TIMEOUT = 60
   DEFAULT_LOOPS    = 10
   DEFAULT_BROWSER  = :chrome
 
   class << self
+    attr_accessor :capybara_driver
+    attr_accessor :capybara_timeout
     attr_accessor :color_output
   end
 
+  self.capybara_driver = :wbench
+  self.capybara_timeout = 60
   self.color_output = true
 end
