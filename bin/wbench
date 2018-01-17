@@ -25,11 +25,11 @@ options = {}.tap do |options|
       options[:user_agent] = user_agent
     end
 
-    opts.on('-nc', '--no-color', 'Disable color output') do
+    opts.on('--no-color', 'Disable color output') do
       options[:color_output] = false
     end
 
-    opts.on('-ns', '--no-style', 'Disable style output') do
+    opts.on('--no-style', 'Disable style output') do
       options[:style_output] = false
     end
 
