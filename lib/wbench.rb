@@ -36,6 +36,7 @@ module WBench
     attr_accessor :color_output
     attr_accessor :style_output
     attr_accessor :format_output
+    attr_accessor :header_output
   end
 
   self.capybara_driver = :wbench
@@ -43,4 +44,5 @@ module WBench
   self.color_output = true
   self.style_output = true
   self.format_output = :text
+  self.skip_header_output = true
 end

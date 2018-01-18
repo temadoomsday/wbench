@@ -20,16 +20,16 @@ module WBench
     private
 
     def heading_s
-      "\nTesting #{@results.url}" \
-        "\nAt #{@results.time}" \
-        + "\n#{@results.loops} loops\n" \
-        + ''.center(35) \
-        + 'Fastest'.ljust(10) \
-        + 'Median'.ljust(10) \
-        + 'Slowest'.ljust(10) \
-        + 'Std Dev'.ljust(10) \
-        + "\n" \
-        + '-' * 75 \
+      s = "\n"
+      s += "Testing #{@results.url}\nAt #{@results.time}\n#{@results.loops} loops\n" if WBench.header_output
+      s += ''.center(35)
+      s += 'Fastest'.ljust(10)
+      s += 'Median'.ljust(10)
+      s += 'Slowest'.ljust(10)
+      s += 'Std Dev'.ljust(10)
+      s += "\n"
+      s += '-' * 75
+      s
     end
 
     def spacer_s

@@ -13,13 +13,7 @@ module WBench
     def html_table
       <<-TABLE
         #{style_s if WBench.style_output}
-        <header>
-          <h3>Testing <span>#{@results.url}</span></h3>
-          <ul>
-            <li>At #{@results.time}</li>
-            <li>#{@results.loops} loops</li>
-          </ul>
-        </header>
+        #{header_s if WBench.header_output}
         <table>
           <thead>
             <th></th>
@@ -63,6 +57,18 @@ module WBench
         .heading { font-weight: 700; }
         </style>
       STYLE
+    end
+
+    def header_s
+      <<-HEADER
+        <header>
+          <h3>Testing <span>#{@results.url}</span></h3>
+          <ul>
+            <li>At #{@results.time}</li>
+            <li>#{@results.loops} loops</li>
+          </ul>
+        </header>
+      HEADER
     end
 
     def spacer_s
