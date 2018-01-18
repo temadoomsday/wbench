@@ -38,23 +38,23 @@ module WBench
 
     def style_s
       <<-STYLE
-      <style>
-        header { padding-bottom: 20px; }
-        header h3 { margin-bottom: 10px; }
-        header h3 span { color: #17a2b8; }
-        header h3 span:after { content: '"' }
-        header h3 span:before { content: '"' }
-        header ul { margin: 0; padding: 0; }
-        header li { list-style: none; }
-        tr { height: 20px; }
-        th { text-align: left; }
-        td { min-width: 80px; }
-        td:first-child { min-width: 250px; }
-        td:nth-of-type(2) { color: #28a745; }
-        td:nth-of-type(3) { color: #17a2b8; }
-        td:nth-of-type(4) { color: #dc3545; }
-        td:nth-of-type(5) { color: #ffc107; }
-        .heading { font-weight: 700; }
+        <style>
+          header { padding-bottom: 20px; }
+          header h3 { margin-bottom: 10px; }
+          header h3 span { color: #17a2b8; }
+          header h3 span:after { content: '"' }
+          header h3 span:before { content: '"' }
+          header ul { margin: 0; padding: 0; }
+          header li { list-style: none; }
+          tr { height: 20px; }
+          th { text-align: left; }
+          td { min-width: 80px; }
+          td:first-child { min-width: 250px; }
+          td:nth-of-type(2) { color: #28a745; }
+          td:nth-of-type(3) { color: #17a2b8; }
+          td:nth-of-type(4) { color: #dc3545; }
+          td:nth-of-type(5) { color: #ffc107; }
+          .heading { font-weight: 700; }
         </style>
       STYLE
     end
