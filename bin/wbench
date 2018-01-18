@@ -33,6 +33,10 @@ options = {}.tap do |options|
       options[:style_output] = false
     end
 
+    opts.on('--no-header', 'Disable heading output') do
+      options[:header_output] = false
+    end
+
     opts.on('-c', '--cookie [COOKIE]', 'Set the cookie (default: browsers` default cookie value)') do |cookie|
       options[:cookie] = cookie
     end
@@ -53,6 +57,10 @@ end
 
 if options.has_key?(:format_output)
   WBench.format_output = options.delete(:format_output)
+end
+
+if options.has_key?(:header_output)
+  WBench.header_output = options.delete(:header_output)
 end
 
 if url = ARGV[0]
