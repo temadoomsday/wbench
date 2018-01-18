@@ -44,5 +44,5 @@ module WBench
   self.color_output = true
   self.style_output = true
   self.format_output = :text
-  self.skip_header_output = true
+  self.header_output = true
 end
