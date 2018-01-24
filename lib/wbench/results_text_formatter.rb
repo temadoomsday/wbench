@@ -16,6 +16,7 @@ module WBench
         spacer_s,
         browser_heading_s,
         browser_rows_s,
+        spacer_s,
         avg_heading_s,
         avg_s
       ].join

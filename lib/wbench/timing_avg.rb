@@ -9,24 +9,21 @@ module WBench
 
       # Remove Start|End out name properties
       hash = hash.each_with_object({}) do |data, acc|
-               key, value = data
-               key = key.gsub(/start|end/i, '')
+        key, value = data
+        key = key.gsub(/start|end/i, '')
 
-               times = acc[key] ||= []
-               times << value
-             end
+        times = acc[key] ||= []
+        times << value
+      end
 
       # Calculate time intervals
       hash = hash.each_with_object({}) do |data, acc|
         key, values = data
-
-        times = acc[key] ||= []
-        times << values.inject(:-).abs
+        acc[key] = values.inject(:-).abs
       end
 
-      hash
-      # # Order the results by value, lowest to highest
-      # hash.sort_by(&:last).each { |key, value| self[key] = value }
+      hash.sort_by(&:last)
+          .each { |key, value| self[key] = value }
     end
   end
 end
