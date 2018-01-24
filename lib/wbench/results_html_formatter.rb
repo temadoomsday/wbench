@@ -111,7 +111,7 @@ module WBench
       '<td class="heading" colspan="5">Average times:</td>'
     end
 
-    def browser_s
+    def avg_s
       items = @results.avg.map do |browser, results|
                 RowHtmlFormatter.new(Titleizer.new(browser).to_s, results)
               end
