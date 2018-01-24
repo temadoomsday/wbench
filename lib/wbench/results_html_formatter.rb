@@ -30,7 +30,9 @@ module WBench
             <tr>#{latency_s}</tr>
             <tr>#{spacer_s}</tr>
             <tr>#{browser_heading_s}</tr>
-            <tr>#{browser_rows_s}</tr>
+            <tr>#{browser_s}</tr>
+            <tr>#{avg_heading_s}</tr>
+            <tr>#{avg_s}</tr>
           </tbody>
         </table>
       TABLE
@@ -98,8 +100,19 @@ module WBench
       '<td class="heading" colspan="5">Browser performance:</td>'
     end
 
-    def browser_rows_s
+    def browser_s
       items = @results.browser.map do |browser, results|
+                RowHtmlFormatter.new(Titleizer.new(browser).to_s, results)
+              end
+      items.join('</tr><tr>')
+    end
+
+    def avg_heading_s
+      '<td class="heading" colspan="5">Average times:</td>'
+    end
+
+    def browser_s
+      items = @results.avg.map do |browser, results|
                 RowHtmlFormatter.new(Titleizer.new(browser).to_s, results)
               end
       items.join('</tr><tr>')
