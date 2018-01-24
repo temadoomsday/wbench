@@ -10,7 +10,7 @@ module WBench
       # Remove Start|End out name properties
       hash = hash.each_with_object({}) do |data, acc|
                key, value = data
-               key.gsub!(/start|end/i, '')
+               key = key.gsub(/start|end/i, '')
 
                times = acc[key] ||= []
                times << value
