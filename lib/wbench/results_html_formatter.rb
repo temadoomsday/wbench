@@ -31,6 +31,7 @@ module WBench
             <tr>#{spacer_s}</tr>
             <tr>#{browser_heading_s}</tr>
             <tr>#{browser_s}</tr>
+            <tr>#{spacer_s}</tr>
             <tr>#{avg_heading_s}</tr>
             <tr>#{avg_s}</tr>
           </tbody>
