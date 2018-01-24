@@ -5,7 +5,8 @@ module WBench
     end
 
     def to_s
-      [ heading_s,
+      [
+        heading_s,
         spacer_s,
         app_heading_s,
         app_server_s,
@@ -14,7 +15,10 @@ module WBench
         latency_s,
         spacer_s,
         browser_heading_s,
-        browser_rows_s ].join
+        browser_rows_s,
+        avg_heading_s,
+        avg_s
+      ].join
     end
 
     private
@@ -40,12 +44,16 @@ module WBench
       @results.browser.map { |browser, results| RowTextFormatter.new(Titleizer.new(browser).to_s, results) }.join("\n")
     end
 
+    def latency_s
+      @results.latency.map { |domain, values| RowTextFormatter.new(domain, values) }.join("\n")
+    end
+
     def app_server_s
       RowTextFormatter.new('Total application time', @results.app_server)
     end
 
-    def latency_s
-      @results.latency.map { |domain, values| RowTextFormatter.new(domain, values) }.join("\n")
+    def avg_s
+      @results.avg.map { |browser, results| RowTextFormatter.new(Titleizer.new(browser).to_s, results) }.join("\n")
     end
 
     def latency_heading_s
@@ -58,6 +66,10 @@ module WBench
 
     def app_heading_s
       ColoredString.new("Server performance:\n", :yellow)
+    end
+
+    def avg_heading_s
+      ColoredString.new("Average times:\n", :yellow)
     end
   end
 end

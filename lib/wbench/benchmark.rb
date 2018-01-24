@@ -17,7 +17,7 @@ module WBench
       Results.new(@url, loops).tap do |results|
         loops.times do
           @browser.run(&@before_each)
-          @browser.visit { results.add(app_server_results, browser_results, latency_results) }
+          @browser.visit { results.add(app_server_results, browser_results, latency_results, avg_results) }
         end
       end
     end
@@ -34,6 +34,10 @@ module WBench
 
     def latency_results
       Timings::Latency.new(@browser).result
+    end
+
+    def avg_results
+      Timings::Avg.new(@browser).result
     end
   end
 end

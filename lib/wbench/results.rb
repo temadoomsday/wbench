@@ -1,6 +1,6 @@
 module WBench
   class Results
-    attr_accessor :url, :loops, :time, :browser, :latency, :app_server
+    attr_accessor :url, :loops, :time, :browser, :latency, :app_server, :avg
 
     def initialize(url, loops)
       @url        = url
@@ -8,10 +8,11 @@ module WBench
       @time       = Time.now.asctime
       @browser    = {}
       @latency    = {}
+      @avg        = {}
       @app_server = []
     end
 
-    def add(app_server, browser, latency)
+    def add(app_server, browser, latency, avg)
       browser.each do |key, value|
         @browser[key] ||= []
         @browser[key] << value
@@ -20,6 +21,11 @@ module WBench
       latency.each do |key, value|
         @latency[key] ||= []
         @latency[key] << value
+      end
+
+      avg.each do |key, value|
+        @avg[key] ||= []
+        @avg[key] << value
       end
 
       @app_server << app_server
