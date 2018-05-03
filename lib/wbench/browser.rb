@@ -39,7 +39,7 @@ module WBench
     end
 
     def close
-      session.driver.browser.quit if session
+      session.driver.browser.quit if session.driver.browser
       @session = nil
     end
 
