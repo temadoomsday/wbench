@@ -15,6 +15,7 @@ module WBench
       wait_for_page
       session.execute_script(wbench_javascript)
       yield if block_given?
+    ensure
       close
     end
 
@@ -38,7 +39,7 @@ module WBench
     end
 
     def close
-      session.driver.browser.quit
+      session.driver.browser.quit if session
       @session = nil
     end
 
