@@ -17,11 +17,15 @@ require 'wbench/browser'
 require 'wbench/colored_string'
 require 'wbench/cookies'
 require 'wbench/selenium_driver'
+require 'wbench/result_formatter'
 require 'wbench/results'
 require 'wbench/results_text_formatter'
 require 'wbench/results_html_formatter'
 require 'wbench/row_text_formatter'
 require 'wbench/row_html_formatter'
+require 'wbench/average_text_formatter'
+require 'wbench/average_html_formatter'
+require 'wbench/total_statistic_info'
 require 'wbench/stats'
 require 'wbench/timing_avg'
 require 'wbench/timing_hash'
@@ -39,6 +43,9 @@ module WBench
     attr_accessor :style_output
     attr_accessor :format_output
     attr_accessor :header_output
+    attr_accessor :discharge_multiplier
+    attr_accessor :unit_name
+    attr_accessor :rounding_characters_number
   end
 
   self.capybara_driver = :wbench
@@ -47,4 +54,7 @@ module WBench
   self.style_output = true
   self.format_output = :text
   self.header_output = true
+  self.discharge_multiplier = 1
+  self.unit_name = 'ms'
+  self.rounding_characters_number = 2
 end

@@ -45,5 +45,16 @@ module WBench
         raise NotImplementedError, 'Not found format output'
       end
     end
+
+    def average_formatted_s(format = :text)
+      case format
+      when :html, 'html'
+        AverageHtmlFormatter.new(self).to_s
+      when :text, 'text'
+        AverageTextFormatter.new(self).to_s
+      else
+        raise NotImplementedError, 'Not found format output'
+      end
+    end
   end
 end

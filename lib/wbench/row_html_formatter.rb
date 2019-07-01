@@ -1,7 +1,9 @@
 module WBench
   class RowHtmlFormatter
+    include WBench::ResultFormatter
+
     def initialize(name, data)
-      @name  = name
+      @name = name
       @stats = Stats.new(data)
     end
 
@@ -24,19 +26,19 @@ module WBench
     end
 
     def fastest_s
-      "<td>#{@stats.min}ms</td>"
+      "<td>#{formatted_result_text(@stats.min)}</td>"
     end
 
     def slowest_s
-      "<td>#{@stats.max}ms</td>"
+      "<td>#{formatted_result_text(@stats.max)}</td>"
     end
 
     def median_s
-      "<td>#{@stats.median}ms</td>"
+      "<td>#{formatted_result_text(@stats.median)}</td>"
     end
 
     def std_dev_s
-      "<td>#{@stats.std_dev.to_i}ms</td>"
+      "<td>#{formatted_result_text(@stats.std_dev.to_i)}</td>"
     end
   end
 end
