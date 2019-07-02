@@ -14,13 +14,13 @@ module WBench
     private
 
     def calculate_average_metric
-      return unless results.any?
-      @average_metric = results.first.dup
+      return if results.blank?
+      @average_metric = results.first
 
-      results.drop(1).each do |result|
+      results.reject { |result| result == average_metric }.each do |result|
         avg_results = result.try(:avg)
         next if avg_results.blank?
-        avg_results.keys.each do |avg_key|
+        avg_results.each_key do |avg_key|
           value = avg_results[avg_key]
           next unless value.is_a?(Array)
           if average_metric.avg[avg_key]

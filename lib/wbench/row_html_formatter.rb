@@ -26,19 +26,19 @@ module WBench
     end
 
     def fastest_s
-      "<td>#{formatted_result_text(@stats.min)}</td>"
+      "<td>#{formatted_result(@stats.min)}</td>"
     end
 
     def slowest_s
-      "<td>#{formatted_result_text(@stats.max)}</td>"
+      "<td>#{formatted_result(@stats.max)}</td>"
     end
 
     def median_s
-      "<td>#{formatted_result_text(@stats.median)}</td>"
+      "<td>#{formatted_result(@stats.median)}</td>"
     end
 
     def std_dev_s
-      "<td>#{formatted_result_text(@stats.std_dev.to_i)}</td>"
+      "<td>#{formatted_result(@stats.std_dev.to_i)}</td>"
     end
   end
 end
